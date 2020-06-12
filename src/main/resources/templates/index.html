@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <header th:insert="blocks/header :: header"></header>
+    <section class="jumbotron text-center" >
+        <div class="container">
+            <h1>ViVi Store</h1>
+            <p class="lead text-muted">В нашем магазине вы найдете только самые свежие и качественные продукты.</p>
+            <p>
+                <a href="/products" class="btn btn-primary my-2">Посмотреть продукты</a>
+                <a href="/products/add" class="btn btn-secondary my-2">Добавить свой продукт</a>
+            </p>
+        </div>
+    </section>
+</body>
+</html>

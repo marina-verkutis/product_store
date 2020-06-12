@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Продукты</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+       ul.hr {
+            margin: 0; /* Обнуляем значение отступов */
+            padding: 4px; /* Значение полей */
+       }
+       ul.hr li {
+            display: inline; /* Отображать как строчный элемент */
+            margin-right: 5px; /* Отступ слева */
+            border: 0px solid #000; /* Рамка вокруг текста */
+            padding: 10px; /* Поля вокруг текста */
+       }
+       form {
+            display: inline; /* Отображать как строчный элемент */
+            margin-right: 5px; /* Отступ слева */
+            border: 0px solid #000; /* Рамка вокруг текста */
+            padding: 10px; /* Поля вокруг текста */
+       }
+  </style>
+</head>
+<body>
+    <header th:insert="blocks/header :: header"></header>
+
+        <div class="my-3 p-5 bg-white">
+            <h5 class="border-bottom border-gray pb-2 mb-0">Список продуктов</h5>
+            <div th:each="el : ${products}" class="border-bottom border-gray pb-2 mb-0">
+                    <ul class="hr">
+                        <b><li th:text="${el.name}"></li></b>
+                        <li th:text="'Цена: ' + ${el.price}/100 + ' руб'"></li>
+                        <li th:text="'Кол-во: ' + ${el.amount}"></li>
+                        <li><a th:href="'/products/' + ${el.id} + '/update'">Редактировать</a></li>
+                        <li>
+                            <form th:action="'/products/' + ${el.id} + '/remove'" method="post">
+                                <button class="btn btn-outline-primary" type="submit">Удалить</button>
+                            </form>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+
+</body>
+</html>

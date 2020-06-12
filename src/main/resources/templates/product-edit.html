@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редактирование информации о продукте</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container mt-5">
+    <h1>Редактирование информации о продукте</h1>
+    <form method="post">
+        <div th:each="el : ${product}">
+            <div class="form-group">
+                <label for="nameInput">Название продукта</label>
+                <input type="text" th:value="${el.name}" name="name" class="form-control" id="nameInput"  required="true">
+            </div>
+            <div class="form-group" id="formPrice">
+                <label for="priceInput">Цена</label>
+                <input type="text" th:value="${el.price}/100"  name="price" class="form-control" id="priceInput" required="true">
+            </div>
+            <div class="form-group">
+                <label for="amountInput">Кол-во</label>
+                <input type="text" th:value="${el.amount}" name="amount" class="form-control" id="amountInput" required="true">
+            </div>
+            <button type="submit" class="btn btn-success">Обновить</button>
+        </div>
+    </form>
+</div>
+
+<script>
+          jQuery(function($) {
+            $("input[name=price]").maskMoney({ allowNegative: true, thousands:'.', decimal:',', affixesStay: false, suffix: ' руб'});
+            $("input[name=amount]").maskMoney({thousands:'', decimal:'', allowZero:false});
+          });
+    </script>
+
+</body>
+</html>
